@@ -1,0 +1,164 @@
+/* Cyberpunk Gradient Background */
+.register-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #000428, #004e92);
+  font-family: "Orbitron", sans-serif;
+}
+
+/* Floating Neon Form */
+.register-box {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  text-align: center;
+  width: 400px;
+  animation: floatUp 1s ease-in-out;
+  border: 2px solid rgba(0, 255, 255, 0.3);
+}
+
+/* Floating Animation */
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Title */
+.register-box h2 {
+  color: #00eaff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Cyberpunk Input Fields */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #00eaff;
+  outline: none;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  border: 2px solid rgba(0, 255, 255, 0.3);
+}
+
+/* Input Glow Effect on Focus */
+input:focus {
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+/* Placeholder Styling */
+input::placeholder {
+  color: rgba(0, 255, 255, 0.5);
+  font-style: italic;
+}
+
+/* Custom reCAPTCHA Checkbox */
+.robot-checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #00eaff;
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.robot-checkbox input {
+  display: none;
+}
+
+/* Checkbox Glow Effect */
+.robot-checkbox .checkmark {
+  width: 22px;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #00eaff;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Checkmark Toggle Animation */
+.robot-checkbox input:checked + .checkmark {
+  background: #00eaff;
+  box-shadow: 0 0 10px #00eaff;
+}
+
+.robot-checkbox input:checked + .checkmark::after {
+  content: "✔";
+  position: absolute;
+  left: 5px;
+  top: -2px;
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+}
+
+/* 3D Glowing Register Button */
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #00eaff, #0077ff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+.register-btn:hover {
+  background: linear-gradient(90deg, #0077ff, #00eaff);
+  transform: scale(1.05);
+  box-shadow: 0 5px 30px rgba(0, 255, 255, 1);
+}
+
+/* Error Message */
+.message.error {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Success Message */
+.message.success {
+  color: #00ff99;
+  font-weight: bold;
+}
+
+
+/* Already have an account? Login link */
+.login-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: rgba(0, 255, 255, 0.8);
+}
+
+.login-link span {
+  color: #00eaff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: text-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.login-link span:hover {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 1);
+  transform: scale(1.05);
+} 

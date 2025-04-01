@@ -1,0 +1,189 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap'); */
+
+:root {
+  --bg-color: #001f3f;
+  --card-bg: rgba(0, 25, 45, 0.8);
+  --border-glow: #00f7ff;
+  --text-color: #ffffff;
+  --highlight: #00ff88;
+  --input-bg: rgba(0, 30, 60, 0.7);
+  --shadow-color: rgba(0, 255, 255, 0.3);
+  --border-radius: 14px;
+  --neon-blue: #00f7ff;
+  --neon-green: #00ff88;
+  --red:#ff0000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Orbitron", 'Times New Roman', Times, serif;
+}
+
+body {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #001a33, #003366);
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+/* Centering the Card */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 70px;
+}
+
+/* Floating Card */
+.login-box {
+  width: 400px;
+  padding: 40px;
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 30px var(--shadow-color);
+  text-align: center;
+  position: relative;
+  border: 2px solid var(--border-glow);
+  animation: floatEffect 4s infinite alternate ease-in-out;
+}
+
+/* Floating Effect */
+@keyframes floatEffect {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+/* Header */
+.login-box h2 {
+  /* font-size: px; */
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--highlight);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Input Fields */
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid transparent;
+  background: var(--input-bg);
+  border-radius: var(--border-radius);
+  color: white;
+  font-size: 16px;
+  outline: none;
+  padding-left: 45px;
+  transition: 0.3s ease-in-out;
+}
+
+/* Floating Icons */
+.input-group i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+}
+
+/* Glow Effect on Focus */
+.input-group input:focus {
+  border-color: var(--neon-green);
+  box-shadow: 0 0 10px var(--neon-green);
+  transform: scale(1.04);
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
+  border: none;
+  border-radius: var(--border-radius);
+  color: rgb(255, 0, 0);
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 20px var(--neon-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 35px var(--neon-green);
+}
+
+/* Extra Links */
+.extra-links {
+  margin-top: 20px;
+}
+
+.extra-links a {
+  color: var(--neon-blue);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+  color: var(--neon-green);
+}
+
+.message.error {
+  color: var(--red);
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Success Message - Green */
+.message.success {
+  color: var(--highlight);
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 15px;
+  text-align: center;
+}
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+  .login-box {
+    width: 320px;
+    padding: 30px;
+  }
+}
