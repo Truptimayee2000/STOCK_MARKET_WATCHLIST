@@ -10,7 +10,7 @@ import threading, time, random
 
 
 
-app.config['SECRET_KEY'] = "Trupti123"
+app.config['SECRET_KEY'] = "give your secret key"
 jwt = JWTManager(app)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
 
