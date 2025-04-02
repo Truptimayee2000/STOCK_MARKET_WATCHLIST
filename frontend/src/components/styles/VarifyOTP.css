@@ -1,4 +1,3 @@
-/* Full-screen container with background gradient */
 .verify-container {
     height: 100vh;
     display: flex;
@@ -8,7 +7,6 @@
     font-family: "Poppins", sans-serif;
   }
   
-  /* OTP Box with glassmorphism effect */
   .verify-box {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
@@ -20,19 +18,16 @@
     animation: fadeIn 1s ease-in-out;
   }
   
-  /* Title */
   .verify-box h2 {
     color: #fff;
     margin-bottom: 10px;
   }
   
-  /* Email text */
   .email-text {
     font-size: 14px;
     color: #ddd;
   }
   
-  /* OTP Input Field */
   .verify-box input {
     width: 90%;
     padding: 12px;
@@ -50,7 +45,6 @@
     transform: scale(1.05);
   }
   
-  /* Verify Button */
   .verify-btn {
     width: 100%;
     padding: 12px;
@@ -68,24 +62,20 @@
     transform: scale(1.05);
   }
   
-  /* Animated Messages */
   .message {
     margin-top: 10px;
     font-size: 14px;
     animation: fadeIn 0.5s ease-in-out;
   }
   
-  /* Success message */
   .message.success {
     color: #28a745;
   }
   
-  /* Error message */
   .message.error {
     color: red;
   }
   
-  /* Fade-in Animation */
   @keyframes fadeIn {
     from {
       opacity: 0;

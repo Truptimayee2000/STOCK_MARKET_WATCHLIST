@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "./Sidebar"; // Import Sidebar
+import Sidebar from "./Sidebar"; 
 import Header from "./Header";
-import "./styles/Dashboard.css"; // Import styles
+import "./styles/Dashboard.css"; 
 
 export const useWatchlist = () => {
   const navigate = useNavigate();
@@ -26,10 +26,9 @@ export const useWatchlist = () => {
       }
     };
 
-    if (token) fetchWatchlist(); // Fetch watchlist if a token exists
+    if (token) fetchWatchlist(); 
   }, [token, navigate]);
 
-  // Function to handle deleting a stock from the watchlist
   const handleDeleteStock = async (symbol) => {
     try {
       await axios.post(
@@ -37,7 +36,7 @@ export const useWatchlist = () => {
         { symbol },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setWatchlist(watchlist.filter((stock) => stock.symbol !== symbol)); // Update the state after deletion
+      setWatchlist(watchlist.filter((stock) => stock.symbol !== symbol)); 
     } catch (error) {
       setError("Error removing stock from watchlist");
     }
@@ -45,13 +44,13 @@ export const useWatchlist = () => {
 
   return (
     <div className="dashboard-layout">
-      <Sidebar /> {/* Include Sidebar */}
+      <Sidebar /> 
       <div className="main-content">
-        <Header /> {/* Include Header */}
+        <Header />
         <div className="dashboard-container">
           <div className="stock-table">
             <h1>Your Watchlist</h1>
-            {error && <div className="error">{error}</div>} {/* Display error message */}
+            {error && <div className="error">{error}</div>} 
             {watchlist.length > 0 ? (
               <div className="table-container">
                 <table className="styled-table">

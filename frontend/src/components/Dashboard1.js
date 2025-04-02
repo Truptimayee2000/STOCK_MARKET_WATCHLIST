@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import io from "socket.io-client";  // Correct client import
+import io from "socket.io-client";  
 import "./styles/Dashboard.css";
 import useWatchlist from "./Watchlist";
 
@@ -82,20 +82,19 @@ const Dashboard1 = () => {
     }
   };
 
-  // Fetch watchlist on component mount
   useEffect(() => {
     const fetchWatchlist = async () => {
       try {
         const response = await axios.get("http://localhost:5000/watchlist", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setWatchlist(response.data); // Set the watchlist with data from the API
+        setWatchlist(response.data); 
       } catch (err) {
         console.error("Error fetching watchlist:", err);
       }
     };
 
-    if (token) fetchWatchlist(); // Fetch watchlist if a token exists
+    if (token) fetchWatchlist(); 
   }, [token]);
 
   const [allStocks, setAllStocks] = useState([]);
@@ -119,7 +118,6 @@ const Dashboard1 = () => {
         <ul className="sidebar-menu">
           <li><Link to="/dashboard1">Dashboard</Link></li>
           <li><Link to="/watchlist">Watchlist</Link></li>
-          <li><Link to="/profile">Profile</Link></li>
         </ul>
       </div>
 
@@ -133,7 +131,6 @@ const Dashboard1 = () => {
         </div>
 
         <div className="dashboard-container">
-          {/* ✅ All Available Stocks Table */}
           <div className="stock-table">
             <h2>📊 All Available Stocks</h2>
             {allStocks.length > 0 ? (
@@ -161,7 +158,7 @@ const Dashboard1 = () => {
                           <button
                             className={`add-btn ${watchlist.some(item => item.symbol === stock.symbol) ? "added" : ""}`}
                             onClick={() => handleAddStock(stock.symbol)}
-                            disabled={watchlist.some(item => item.symbol === stock.symbol)} // Disable if added
+                            disabled={watchlist.some(item => item.symbol === stock.symbol)} 
                           >
                             {watchlist.some(item => item.symbol === stock.symbol) ? "Added" : "Add Stock"}
                           </button>

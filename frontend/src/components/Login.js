@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    setMessage({ text: "", type: "" }); // Reset message on login attempt
+    setMessage({ text: "", type: "" }); 
   
     try {
       const response = await axios.post("http://localhost:5000/login", {
@@ -21,10 +21,8 @@ const Login = () => {
   
       setMessage({ text: "✅ " + response.data.message, type: "success" });
   
-      // Store the JWT token in local storage
       localStorage.setItem("token", response.data.access_token);
   
-      // Redirect to the dashboard after a short delay
       setTimeout(() => navigate("/dashboard1"), 2000);
     } catch (error) {
       setMessage({ 

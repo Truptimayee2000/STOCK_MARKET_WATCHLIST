@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./styles/VarifyOTP.css"; // Import CSS for styling
+import "./styles/VarifyOTP.css"; 
+
 
 const VerifyOTP = () => {
   const [otp, setOtp] = useState("");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false); // ⏳ Show loading indicator
+  const [loading, setLoading] = useState(false); 
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Get email & password from state
   const email = location.state?.email || "";
   const password = location.state?.password || "";
 
-  // Redirect to register if no email is found
   useEffect(() => {
     if (!email) {
       setMessage("⚠️ Email not found. Please register again.");
@@ -28,7 +27,7 @@ const VerifyOTP = () => {
       return;
     }
 
-    setLoading(true); // Show loading
+    setLoading(true); 
 
     try {
       const response = await axios.post(
@@ -38,12 +37,12 @@ const VerifyOTP = () => {
       );
 
       setMessage("✅ " + response.data.message);
-      setTimeout(() => navigate("/login"), 2000); // Redirect to login
+      setTimeout(() => navigate("/login"), 2000); 
     } catch (error) {
       const errorMsg = error.response?.data?.error || "Something went wrong.";
       setMessage("❌ OTP verification failed: " + errorMsg);
     } finally {
-      setLoading(false); // Hide loading
+      setLoading(false); 
     }
   };
 
