@@ -58,7 +58,7 @@ const VerifyOTP = () => {
           placeholder="Enter OTP"
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
-          maxLength={6} // Fix: Proper JSX syntax
+          maxLength={6} 
           required
         />
         <button onClick={verifyOTP} className="verify-btn" disabled={loading}>

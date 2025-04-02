@@ -17,7 +17,7 @@ export const useWatchlist = () => {
         const response = await axios.get("http://localhost:5000/watchlist", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setWatchlist(response.data); // Set the watchlist with data from the API
+        setWatchlist(response.data); 
       } catch (err) {
         setError("Error fetching watchlist");
         if (err.response?.status === 401) {

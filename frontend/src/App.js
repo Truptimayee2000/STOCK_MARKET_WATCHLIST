@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />  {/* Redirect to Login */}
+        <Route path="/" element={<Navigate to="/login" />} />  
         <Route path="/register" element={<Register />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/login" element={<Login />} />

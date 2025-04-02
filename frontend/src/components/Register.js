@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./styles/Register.css"; // Import CSS for styling
+import "./styles/Register.css"; 
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +11,6 @@ const Register = () => {
   const [message, setMessage] = useState({ text: "", type: "" });
   const navigate = useNavigate();
 
-  // Function to validate password
   function isValidPassword(password) {
     var passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     return passwordRegex.test(password);
@@ -23,7 +22,6 @@ const Register = () => {
       return;
     }
 
-    // Validate password
     if (!isValidPassword(password)) {
       setMessage({
         text: "❌ Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*).",
@@ -32,13 +30,11 @@ const Register = () => {
       return;
     }
 
-    // Check if passwords match
     if (password !== confirmPassword) {
       setMessage({ text: "❌ Passwords do not match!", type: "error" });
       return;
     }
 
-    // Verify reCAPTCHA checkbox
     if (!isRobot) {
       setMessage({ text: "⚠️ Please confirm that you are not a robot!", type: "error" });
       return;
@@ -97,7 +93,6 @@ const Register = () => {
         </button>
         {message.text && <p className={`message ${message.type}`}>{message.text}</p>}
 
-        {/* Already have an account? Login */}
         <p className="login-link">
           Already have an account?{" "}
           <span onClick={() => navigate("/login")}>Login</span>
