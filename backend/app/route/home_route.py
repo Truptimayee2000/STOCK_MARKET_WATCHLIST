@@ -3,7 +3,7 @@ from datetime import datetime
 from app import app
 from dbconfig import db, mail
 from flask_mail import Message
-from models import User, OTPVerification, Stock, Watchlist
+from models import User, OTPVerification, Stock, Watchlist, PreviousStockChange
 from flask_socketio import SocketIO
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity, create_access_token
 import threading, time, random
@@ -122,31 +122,75 @@ def get_watchlist():
     watchlist = (
         db.session.query(
             Watchlist.user_id,
-            User.email_id,  
+            User.email_id,
             Watchlist.symbol,
             Stock.name,
             Stock.price,
             Stock.change
         )
-        .join(User, User.user_id == Watchlist.user_id)  
-        .join(Stock, Stock.symbol == Watchlist.symbol)  
-        .filter(Watchlist.user_id == user_id)  
+        .join(User, User.user_id == Watchlist.user_id)
+        .join(Stock, Stock.symbol == Watchlist.symbol)
+        .filter(Watchlist.user_id == user_id)
         .all()
     )
 
-    watchlist_data = [
-        {
+    watchlist_data = []
+    changes_detected = []  # To store symbols with a detected change
+    user_email = None
+
+    for w in watchlist:
+        user_email = w.email_id  # Will be same for all since it's filtered by user
+        prev = PreviousStockChange.query.filter_by(symbol=w.symbol).first()
+
+        if prev:
+            if w.change != prev.last_change:
+                changes_detected.append({
+                    "symbol": w.symbol,
+                    "name": w.name,
+                    "price": w.price,
+                    "change": w.change
+                })
+                prev.last_change = w.change
+        else:
+            # First time storing
+            prev = PreviousStockChange(symbol=w.symbol, last_change=w.change)
+            db.session.add(prev)
+
+        watchlist_data.append({
             "user_id": w.user_id,
             "email": w.email_id,
             "symbol": w.symbol,
             "name": w.name,
             "price": w.price,
             "change": w.change,
-        }
-        for w in watchlist
-    ]
+        })
+
+    db.session.commit()
+
+    if changes_detected:
+        send_bulk_stock_change_email(user_email, changes_detected)
 
     return jsonify(watchlist_data)
+
+
+def send_bulk_stock_change_email(email, changes):
+    subject = "Stock Alert: Changes Detected"
+    body = "Hi,\n\nHere are the stock updates in your watchlist:\n\n"
+
+    for item in changes:
+        body += (
+            f"Symbol: {item['symbol']}\n"
+            f"Name: {item['name']}\n"
+            f"Price: ₹{item['price']}\n"
+            f"Change: {item['change']}%\n\n"
+        )
+
+    body += "Visit your watchlist to see more details."
+
+    msg = Message(subject, recipients=[email], body=body)
+    mail.send(msg)
+
+
 
 #  Add Stock 
 @app.route('/watchlist/add', methods=['POST'])

@@ -71,6 +71,12 @@ def populate_stocks():
         db.session.bulk_save_objects(initial_stocks)
         db.session.commit()
 
+class PreviousStockChange(db.Model):
+    __tablename__ = 'previous_stock_change'
+    symbol = db.Column(db.String, primary_key=True)
+    last_change = db.Column(db.Float)
+
+
 with app.app_context():
     db.create_all()
     populate_stocks()
